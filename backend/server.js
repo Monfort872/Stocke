@@ -8,10 +8,15 @@ import { ENV } from "./lib/Env.js";
 const app = express();
 const { PORT } = ENV;
 
-app.use("/api", IndexRoute)
+//Express Middleware
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
-connectDB
+//Routes
+app.use("/api", IndexRoute)
 
 app.listen(PORT, () => {
   console.log(`Server listening on port: ${PORT}`);
+  connectDB();
 })

@@ -8,12 +8,8 @@ export const connectDB = async () => {
     if (!MONGODB) {
       throw new Error("Missing Mongodb uri");
     }
-    const conn = await mongoose.connect(MONGODB);
-    if (conn) {
-      console.log("Mongodb connection successfull");
-    } else {
-      console.log("...waiting connection")
-    }
+    await mongoose.connect(MONGODB);
+    console.log(`MongoDB Connection Established Successfully...: ${MONGODB}`)
   } catch (error) {
     console.error(`mongodb connection error: ${error}`);
   }
